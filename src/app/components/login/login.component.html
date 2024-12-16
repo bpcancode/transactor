@@ -1,0 +1,60 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <h2 class="mb-4 text-center">Login</h2>
+          <form (ngSubmit)="onLogin()" #loginForm="ngForm" novalidate>
+            <!-- Username -->
+            <div class="mb-3">
+              <label for="username" class="form-label">Username:</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                ngModel
+                required
+                class="form-control"
+                placeholder="Enter your username"
+              />
+              @if (loginForm.controls['username'].invalid &&
+              loginForm.controls['username'].touched) {
+
+              <div class="invalid-feedback d-block">Username is required.</div>
+              }
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+              <label for="password" class="form-label">Password:</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                ngModel
+                required
+                class="form-control"
+                placeholder="Enter your password"
+              />
+              @if (loginForm.controls['password'].invalid &&
+              loginForm.controls['password'].touched) {
+              <div class="invalid-feedback d-block">Password is required.</div>
+              }
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="!loginForm.valid"
+              >
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
