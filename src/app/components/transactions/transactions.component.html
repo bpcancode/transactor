@@ -1,5 +1,8 @@
+<app-loading [isLoading]="isLoading"></app-loading>
+<app-navbar />
+
 <div class="container main">
-  <h2>Transactions</h2>
+  <h2>Transaction List</h2>
   <button
     routerLink="/transaction-form"
     class="btn btn-primary mb-3"
@@ -16,6 +19,8 @@
         <th scope="col">Amount</th>
         <th scope="col">Status</th>
         <th scope="col">Created Date</th>
+        <th scope="col">Last Modified Date</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -24,9 +29,34 @@
         <td scope="row">{{ item.id }}</td>
         <td>{{ item.description }}</td>
         <td>{{ item.amount }}</td>
-        <td>{{ item.status }}</td>
+        <td
+          [ngClass]="{
+            'text-success': item.status === 'Completed',
+            'text-warning': item.status === 'Pending',
+            'text-danger': item.status === 'Cancelled'
+          }"
+        >
+          {{ item.status }}
+        </td>
         <td>{{ item.createdDate | date }}</td>
+        <td>{{ item.lastModifiedDate | date }}</td>
+        <td>
+          <button
+            routerLink="/transaction-form"
+            class="btn btn-secondary"
+            (click)="editTransactionClicked(item.id)"
+          >
+            Edit
+          </button>
+          <button
+            class="btn btn-danger"
+            (click)="deleteTransactionClicked(item.id)"
+          >
+            Delete
+          </button>
+        </td>
       </tr>
+
       }
     </tbody>
   </table>

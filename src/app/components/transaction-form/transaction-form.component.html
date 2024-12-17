@@ -1,3 +1,4 @@
+<app-loading [isLoading]="isLoading"></app-loading>
 <div class="container mt-5 wrapper">
   <h2 class="mb-4">Add Transaction</h2>
   <form
@@ -58,7 +59,7 @@
         class="btn btn-primary"
         [disabled]="!transactionForm.valid"
       >
-        Submit
+        {{ transactionId ? "Update" : "Add" }} Transaction
       </button>
     </div>
   </form>
